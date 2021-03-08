@@ -9,16 +9,29 @@ public class Triangle {
         EQUILATERAL, ISOSCELES, SCALENE
     }
 
-    private Double [] sideLengths;
+    private double [] sideLengths;
 
-    public Triangle(double lengthOfSideA, double lengthOfSideB, double lengthOfSideC){
-        this.sideLengths = new Double[] {lengthOfSideA, lengthOfSideB, lengthOfSideC};
+    public double[] getSideLengths() {
+        return sideLengths;
+    }
+
+    public Triangle(double lengthOfSideA, double lengthOfSideB, double lengthOfSideC) throws Exception {
+        this.sideLengths = new double[] {lengthOfSideA, lengthOfSideB, lengthOfSideC};
+        verifySideLengths(sideLengths.clone());
+    }
+
+    private void verifySideLengths (double [] sideLengths) throws Exception {
+        Arrays.sort(sideLengths);
+        if (sideLengths[0] + sideLengths[1] <= sideLengths[2]){
+            throw new Exception("Invalid side lengths: " + sideLengths.toString());
+        }
     }
 
     public TriangleType getType(){
 
         Set<Double> equalSides = new HashSet<Double>();
-        equalSides.addAll(Arrays.asList(this.sideLengths));
+        equalSides.addAll(Arrays.asList(new Double [] {this.sideLengths[0], this.sideLengths[1], this.sideLengths[2]}));
+
 
         switch (equalSides.size()){
             case 1:
