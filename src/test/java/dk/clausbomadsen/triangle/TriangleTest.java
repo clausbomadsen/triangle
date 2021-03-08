@@ -56,6 +56,4 @@ public class TriangleTest extends TestCase {
             assertEquals(Triangle.TriangleType.SCALENE, triangle.getType());
         }
     }
-
-
 }
